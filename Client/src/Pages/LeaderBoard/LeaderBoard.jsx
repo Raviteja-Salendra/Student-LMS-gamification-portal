@@ -22,6 +22,8 @@ const LeaderBoard = () => {
   const [count, setCount] = useState(0);
   const [open, setOpen] = useState(false);
   const [img, setImg] = useState(null);
+  const [userName, setUserName] = useState(null);
+  const [lcScore, setLcScore] = useState([]);
 
   //redux states
   const {
@@ -36,6 +38,7 @@ const LeaderBoard = () => {
         const res = await axios.get(`http://localhost:4500/student/${user}`);
         console.log(res.data.courses);
         setUserDet(res);
+        setUserName(res.data.name);
       } catch (err) {
         console.log(err);
       }
@@ -45,10 +48,35 @@ const LeaderBoard = () => {
   }, []);
 
   useEffect(() => {
+    const fetchLCScore = async () => {
+      students.map(async (item, i) => {
+        const res = await fetch(`http://localhost:3000/${item.name}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        console.log(data);
+        setLcScore((prev) => [
+          ...prev,
+          {
+            name: item.name,
+            email: item.email,
+            class: item.class,
+            score: data.ranking,
+          },
+        ]);
+      });
+    };
+    fetchLCScore();
+    console.log(lcScore);
+  }, []);
+
+  useEffect(() => {
     if (!isAuthenticated) {
       return navigate("/");
     }
-    
   }, []);
 
   var count2;
@@ -77,31 +105,30 @@ const LeaderBoard = () => {
     }
   }
   const cardStyle = {
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '26px',
-    width: '300px',
-    textAlign: 'center',
-    margin: '16px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    border: "1px solid #ccc",
+    borderRadius: "8px",
+    padding: "26px",
+    width: "300px",
+    textAlign: "center",
+    margin: "16px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     width: "32%",
   };
 
   const imgStyle = {
-    borderRadius: '50%',
-    width: '180px',
-    height: '180px',
-    objectFit: 'cover',
-    marginBottom: '8px',
+    borderRadius: "50%",
+    width: "180px",
+    height: "180px",
+    objectFit: "cover",
+    marginBottom: "8px",
   };
 
   const badgeStyle = {
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    padding: '10px 8px',
-    borderRadius: '4px',
+    backgroundColor: "#4CAF50",
+    color: "white",
+    padding: "10px 8px",
+    borderRadius: "4px",
   };
-
 
   return (
     <Navbar>
@@ -117,7 +144,10 @@ const LeaderBoard = () => {
           style={{ display: "flex", flexWrap: "wrap" }}
         >
           <div className="tableContainer" style={{ width: "68%" }}>
-            <table className="" style={{padding:"20px", paddingLeft:"40px"}}>
+            <table
+              className=""
+              style={{ padding: "20px", paddingLeft: "40px" }}
+            >
               <thead>
                 <tr>
                   <th>Name</th>
@@ -136,7 +166,7 @@ const LeaderBoard = () => {
               </tbody>
             </table>
           </div>
-          <hr style={{marginRight:"40px"}}></hr>
+          <hr style={{ marginRight: "40px" }}></hr>
           {/* <div style={{ width: "50%" }}>
             <center style={{ marginTop: "3%" }}>
               <button onClick={handleClick} className="viewBadgesButton">
@@ -160,18 +190,16 @@ const LeaderBoard = () => {
             {open && img === badge1 ? "Bronze medal" : ""}
           
           </div> */}
-          <div style={cardStyle}   >
-      <img
-        src="https://freesvg.org/img/abstract-user-flat-4.png"
-        alt="Profile"
-        style={imgStyle}
-      />
-      <h2 style={{ margin: '8px 0' }}>John Doe</h2>
-      <p style={{marginTop:"10px" ,marginBottom:"10px"}}>Image Score: 95</p>
-      {open && (
-      <div style={badgeStyle}>{open && img === badge1 ? "Bronze medal" : ""}</div>
-      )}
-      {/* <div style={{width: "100%", border:"1px solid black", marginTop:"15px", borderRadius:"8px" , backgroundColor:"lightblue"}}>
+          <div style={cardStyle}>
+            <img
+              src="https://freesvg.org/img/abstract-user-flat-4.png"
+              alt="Profile"
+              style={imgStyle}
+            />
+            <h2 style={{ margin: "8px 0" }}>Ganachari Sugam</h2>
+            <p style={{ marginTop: "10px", marginBottom: "10px" }}>Score: 95</p>
+            {open && <div style={badgeStyle}>{open && "Bronze medal"}</div>}
+            {/* <div style={{width: "100%", border:"1px solid black", marginTop:"15px", borderRadius:"8px" , backgroundColor:"lightblue"}}>
                 <img
                   src={img}
                   alt="Badge"
@@ -182,41 +210,179 @@ const LeaderBoard = () => {
                   }}
                 />
               </div> */}
-              <div >
+            <div>
+              <center style={{ marginTop: "3%" }}>
+                {open && (
+                  <button
+                    onClick={handleClick}
+                    className="viewBadgesButton"
+                    style={{ backgroundColor: "white", color: "gray" }}
+                  >
+                    {open ? "x" : "View Badges"}
+                  </button>
+                )}
+              </center>
+              {!open && (
+                <button onClick={handleClick} className="viewBadgesButton">
+                  {open ? "x" : "View Badges"}
+                </button>
+              )}
+
+              {open && (
+                <div
+                  style={{
+                    width: "100%",
+                    border: "1px solid black",
+                    marginTop: "15px",
+                    borderRadius: "8px",
+                    backgroundColor: "lightblue",
+                  }}
+                >
+                  <img
+                    src={badge1}
+                    alt="Badge"
+                    style={{
+                      height: "120px",
+                      marginTop: "2%",
+                      marginLeft: "10px",
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      </div>
+      <div className="leaderboardData">
+        {/* table */}
+        <section
+          className="tableAndBadgeContainer"
+          style={{ display: "flex", flexWrap: "wrap" }}
+        >
+          <div className="tableContainer" style={{ width: "68%" }}>
+            <table
+              className=""
+              style={{ padding: "20px", paddingLeft: "40px" }}
+            >
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Class</th>
+                  <th>Leetcode Ranking</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lcScore
+                  .sort((a, b) => (a.score > b.score ? 1 : -1))
+                  .map((data, i) => (
+                    <tr className="tableRow" key={i}>
+                      <td>{data.name}</td>
+                      <td>{data.email}</td>
+                      <td>{data.class}</td>
+                      <td>{data.score}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <hr style={{ marginRight: "40px" }}></hr>
+          {/* <div style={{ width: "50%" }}>
             <center style={{ marginTop: "3%" }}>
-            {open && (
-              <button onClick={handleClick} className="viewBadgesButton" style={{backgroundColor:"white" ,color:"gray"}}>
-                {open ? "x" : "View Badges"}
-              </button>
-               )}
-                </center>
-               {!open && (
               <button onClick={handleClick} className="viewBadgesButton">
-                {open ? "x" : "View Badges"}
+                {open ? "Close" : "View Badges"}
               </button>
-               )}
-           
+            </center>
      
             {open && (
-                 <div style={{width: "100%", border:"1px solid black", marginTop:"15px", borderRadius:"8px" , backgroundColor:"lightblue"}}>
+              <div style={{width: "100%", border:"1px solid black", marginTop:"15px", borderRadius:"8px"}}>
                 <img
                   src={img}
                   alt="Badge"
                   style={{
-                    height: "120px",
+                    height: "100px",
                     marginTop: "2%",
                     marginLeft: "10px",
                   }}
                 />
-              </div> 
+              </div>
             )}
-            
+            {open && img === badge1 ? "Bronze medal" : ""}
           
+          </div> */}
+          <div style={cardStyle}>
+            <img
+              src="https://freesvg.org/img/abstract-user-flat-4.png"
+              alt="Profile"
+              style={imgStyle}
+            />
+            <h2 style={{ margin: "8px 0" }}>Ganachari Sugam</h2>
+            <p style={{ marginTop: "10px", marginBottom: "10px" }}>
+              Excellent! Keep it up
+            </p>
+            {open && <div style={badgeStyle}>{open && "Silver Medal"}</div>}
+            {/* <div>
+              <center style={{ marginTop: "3%" }}>
+                {open && (
+                  <button
+                    onClick={handleClick}
+                    className="viewBadgesButton"
+                    style={{ backgroundColor: "white", color: "gray" }}
+                  >
+                    {open ? "x" : "View Badges"}
+                  </button>
+                )}
+              </center>
+              {!open && (
+                <button onClick={handleClick} className="viewBadgesButton">
+                  {open ? "x" : "View Badges"}
+                </button>
+              )}
+
+              {open && (
+                <div
+                  style={{
+                    width: "100%",
+                    border: "1px solid black",
+                    marginTop: "15px",
+                    borderRadius: "8px",
+                    backgroundColor: "lightblue",
+                  }}
+                >
+                  <img
+                    src={badge2}
+                    alt="Badge"
+                    style={{
+                      height: "120px",
+                      marginTop: "2%",
+                      marginLeft: "10px",
+                    }}
+                  />
+                </div>
+              )}
+            </div> */}
+            <div
+              style={{
+                width: "100%",
+                border: "1px solid black",
+                marginTop: "15px",
+                borderRadius: "8px",
+                backgroundColor: "lightblue",
+              }}
+            >
+              <img
+                src={badge2}
+                alt="Badge"
+                style={{
+                  height: "120px",
+                  marginTop: "2%",
+                  marginLeft: "10px",
+                }}
+              />
+            </div>
           </div>
-    </div>
         </section>
       </div>
-     
     </Navbar>
   );
 };

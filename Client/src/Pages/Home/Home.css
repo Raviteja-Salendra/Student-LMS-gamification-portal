@@ -50,15 +50,15 @@
 .main .overview .overview-right {
   width: 70%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
 }
 .main .overview-right li {
   padding: 10px;
   background: white;
   border-radius: 15px;
   box-shadow: rgba(178, 181, 184, 0.2) 0px 8px 24px;
-  display: flex;
+  /* display: flex; */
   align-items: center;
   gap: 10px;
 }

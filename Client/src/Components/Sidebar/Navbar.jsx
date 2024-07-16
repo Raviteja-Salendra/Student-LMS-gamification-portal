@@ -41,13 +41,13 @@ const Navbar = ({ children }) => {
 
   //Sidebar menu
   const adminData = [
-    { icon: <HiOutlineHome />, title: "Dashboard", address: "/home" },
+    // { icon: <HiOutlineHome />, title: "Dashboard", address: "/home" },
     { icon: <RiAdminLine />, title: "Admins", address: "/admin" },
     { icon: <BiUserVoice />, title: "Tutors", address: "/tutor" },
     { icon: <PiStudentDuotone />, title: "Students", address: "/student" },
     { icon: <TbBrandSpeedtest />, title: "Quizzes", address: "/quizzes" },
-    { icon: <TbLayoutGridAdd />, title: "Contents", address: "/contents" },
-    { icon: <TbUsers />, title: "Leader Board", address: "/leaderboard" },
+    // { icon: <TbLayoutGridAdd />, title: "Contents", address: "/contents" },
+    // { icon: <TbUsers />, title: "Leader Board", address: "/leaderboard" },
   ];
   const studentData = [
     { icon: <HiOutlineHome />, title: "Dashboard", address: "/home" },
@@ -56,14 +56,17 @@ const Navbar = ({ children }) => {
     { icon: <AiOutlineQuestion />, title: "Doubts", address: "/doubts" },
     // { icon: <TbMessages />, title: "Message", address: "/messages" },
     { icon: <TbUsers />, title: "Leader Board", address: "/leaderboard" },
+    { icon:<PiStudentDuotone />, title: "SQA", address: "/personalisedlearning" },
+    { icon:<PiStudentDuotone />, title: "Suggestions", address: "/personalised-suggestions" }
+    
     // { icon: <BsBookmarkCheck />, title: "Bookmarks", address: "/bookmarks" },
   ];
   const tutorData = [
-    { icon: <HiOutlineHome />, title: "Dashboard", address: "/home" },
+    // { icon: <HiOutlineHome />, title: "Dashboard", address: "/home" },
     { icon: <PiStudentDuotone />, title: "Students", address: "/student" },
     { icon: <TbBrandSpeedtest />, title: "Quizzes", address: "/quizzes" },
     { icon: <TbLayoutGridAdd />, title: "Contents", address: "/contents" },
-    { icon: <TbUsers />, title: "Leader Board", address: "/leaderboard" },
+    { icon: <TbUsers />, title: "Leader Board", address: "/leaderboard-tutor" },
     { icon: <AiOutlineQuestion />, title: "Doubts", address: "/doubts" },
     // { icon: <TbMessages />, title: "Message", address: "/messages" },
   ];

@@ -44,32 +44,32 @@ router.post("/register", isAdminAuthenticated, async (req, res) => {
           await tutor.save();
           let newTutor = await TutorModel.find({ email });
 
-          const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-              user: "agrawaljoy1@gmail.com",
-              pass: "nsziioprjzwcodlm",
-            },
-          });
+          // const transporter = nodemailer.createTransport({
+          //   service: "gmail",
+          //   auth: {
+          //     user: "agrawaljoy1@gmail.com",
+          //     pass: "nsziioprjzwcodlm",
+          //   },
+          // });
 
-          const mailOptions = {
-            from: "agrawaljoy1@gmail.com",
-            to: email,
-            subject: "Account ID and Password",
-            text: `Welcome to LMS, Congratulations,Your account has been created successfully.This is your User type : Tutor and Password : ${password}  `,
-          };
+          // const mailOptions = {
+          //   from: "agrawaljoy1@gmail.com",
+          //   to: email,
+          //   subject: "Account ID and Password",
+          //   text: `Welcome to LMS, Congratulations,Your account has been created successfully.This is your User type : Tutor and Password : ${password}  `,
+          // };
 
-          transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-              return res.send({ msg: "error" });
-            }
-            res.send({ msg: "Password sent" });
-          });
+          // transporter.sendMail(mailOptions, (error, info) => {
+          //   if (error) {
+          //     return res.send({ msg: "error" });
+          //   }
+          //   res.send({ msg: "Password sent" });
+          // });
 
-          res.send({
-            msg: "Tutor Registered Successfully",
-            tutor: newTutor[0],
-          });
+          // res.send({
+          //   msg: "Tutor Registered Successfully",
+          //   tutor: newTutor[0],
+          // });
         }
       }
     );

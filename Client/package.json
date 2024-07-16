@@ -20,6 +20,7 @@
     "react-player": "^2.12.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
+    "react-spinners": "^0.13.8",
     "react-vertical-timeline-component": "^3.6.0",
     "recharts": "^2.7.2",
     "redux": "^4.2.1",

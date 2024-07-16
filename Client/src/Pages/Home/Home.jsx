@@ -33,6 +33,8 @@ import "./Home.css";
 
 //Image imports
 import demo from "../../Assets/cartoon.svg";
+import lmsLogo from "../../Assets/pic.png";
+import logo from "../../Assets/HEHEE.png";
 
 //Data imports
 import { barData, pieData, COLORS } from "../../data.js";
@@ -49,16 +51,16 @@ const Home = () => {
 
   //overview data
   const overviewData = [
-    {
-      icon: <FiShoppingCart />,
-      title: "Admins",
-      number: dashboard?.admins?.length || 0,
-    },
-    {
-      icon: <PiKeyReturnThin />,
-      title: "Tutors",
-      number: dashboard?.tutors?.length || 0,
-    },
+    // {
+    //   icon: <FiShoppingCart />,
+    //   title: "Admins",
+    //   number: dashboard?.admins?.length || 0,
+    // },
+    // {
+    //   icon: <PiKeyReturnThin />,
+    //   title: "Tutors",
+    //   number: dashboard?.tutors?.length || 0,
+    // },
     {
       icon: <BsTruck />,
       title: "Student",
@@ -108,7 +110,7 @@ const Home = () => {
               <div>
                 <button>Whats New !</button>
               </div>
-              <img src={demo} alt="" />
+              <img src={logo} alt="" style={{ width: "300px" }} />
             </div>
             <div className="overview-right">
               {overviewData?.map(({ icon, title, number }, i) => {
@@ -123,7 +125,7 @@ const Home = () => {
           <div className="charts">
             <div className="lineChart">
               <div className="chartHead">
-                <p>Premium Balance</p>
+                <p>Student Attendance</p>
               </div>
               <div className="chartBox">
                 <div className="chartOne">
@@ -136,11 +138,11 @@ const Home = () => {
                         wrapperStyle={{ lineHeight: "40px" }}
                       />
                       <ReferenceLine y={0} stroke="#000" />
-                      <Bar dataKey="Earning" fill="#8884d8" />
+                      <Bar dataKey="Attendance" fill="#8884d8" />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="chartTwo">
+                {/* <div className="chartTwo">
                   <div>
                     <BsDownload />
                     <div>
@@ -165,7 +167,7 @@ const Home = () => {
                     </div>
                     <p>+$256</p>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="pieChart">
@@ -198,9 +200,6 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="homeFooter">
-            Copyright 2023 © LMS created by Piyush Agrawal
           </div>
         </div>
       </Navbar>

@@ -38,7 +38,7 @@ const Student = () => {
     setOpen(false);
   };
 
-//form states and functions
+  //form states and functions
   const initialFormData = {
     name: "",
     email: "",
@@ -49,7 +49,6 @@ const Student = () => {
   const handleInputChange = (e) => {
     setFormData({ ...FormData, [e.target.name]: e.target.value });
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();

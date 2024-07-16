@@ -17,7 +17,9 @@ const Quiz = ({ data }) => {
   return (
     <div className="quizDiv">
       <div>
-        <img src={data.thumbnail} alt="thumbnail" />
+        <center style={{ marginBottom: "4px" }}>
+          <b>Title : {data.thumbnail}</b>
+        </center>
       </div>
       <div>
         <div>

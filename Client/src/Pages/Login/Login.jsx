@@ -65,7 +65,7 @@ const Login = () => {
           });
         } else {
           setLoading(false);
-          return navigate("/home");
+          return navigate("/tutor");
         }
       });
     }
@@ -94,14 +94,14 @@ const Login = () => {
           });
         } else {
           setLoading(false);
-          return navigate("/home");
+          return navigate("/student");
         }
       });
     }
     if (formData.type === "student") {
       dispatch(studentLogin(formData)).then((res) => {
         console.log(res.user._id);
-        localStorage.setItem('user', res.user._id);
+        localStorage.setItem("user", res.user._id);
         if (res.message === "Wrong credentials") {
           setLoading(false);
           messageApi.open({
@@ -137,11 +137,6 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div>
-        <p>Please use this credentials.</p>
-        <p>Email : test@gmail.com</p>
-        <p>Password : test</p>
-      </div>
       <br />
       <div className="loginContainer">
         <div className="loginImage">

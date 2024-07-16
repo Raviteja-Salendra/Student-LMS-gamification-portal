@@ -11,7 +11,9 @@ import SingleContent from "../Pages/SingleContent/SingleContent";
 import Doubts from "../Pages/Doubts/Doubts";
 import SingleDoubt from "../Pages/SingleDoubt/SingleDoubt";
 import LeaderBoard from "../Pages/LeaderBoard/LeaderBoard";
-import Page from "../Pages/PersonalisedLearning/Page"; 
+import Page from "../Pages/PersonalisedLearning/Page";
+import Suggestions from "../Pages/PersonalisedLearning/Suggestions";
+import LeaderBoardTeacher from "../Pages/LeaderBoard/LeaderBoardTeacher";
 const Router = () => {
   return (
     <div>
@@ -27,8 +29,10 @@ const Router = () => {
         <Route path="/contents" element={<Content />} />
         <Route path="/doubts" element={<Doubts />} />
         <Route path="/doubt/:id" element={<SingleDoubt />} />
-        <Route path="/personalisedlearning" element={<Page/>}/>
+        <Route path="/personalisedlearning" element={<Page />} />
         <Route path="*" element={<Home />} />
+        <Route path="/personalised-suggestions" element={<Suggestions />} />
+        <Route path="/leaderboard-tutor" element={<LeaderBoardTeacher />} />
       </Routes>
     </div>
   );
