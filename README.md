@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Student LMS Portal Gamification
 
 ## Overview
@@ -183,3 +184,6 @@ Admin Login:
 ![Screenshot (1040)](https://github.com/B-Sujith-Kumar/Student-LMS-Portal-Gamification/assets/92416850/757fd4e8-2b4b-4e83-a7bb-f9cdbd6931b9)
 
 
+=======
+# Student-LMS-gamification-portal
+>>>>>>> e749628d3503fde0fb78976e4590ed81c2571e73
